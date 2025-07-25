@@ -2,6 +2,9 @@ package service;
 
 import model.Product;
 
+/**
+ * To interact with terminal to ask information to mount product data.
+ */
 public class CollectProductDataFromTerminal {
     
 
@@ -10,6 +13,10 @@ public class CollectProductDataFromTerminal {
     public CollectProductDataFromTerminal(TerminalService terminalService){
         this.terminalService = terminalService;
     }
+    /**
+     * To initialize data colector.
+     * @return product with user-provided data.
+     */
 
 
 public Product collect(){
@@ -19,7 +26,7 @@ public Product collect(){
     var value = terminalService.readLineAsDouble();
     terminalService.showMessage("INFORME O ESTOQUE DO PRODUTO");
     var stock = terminalService.readLineAsInt();
-
+    //multiply to prevent float number.
     value *= 100;
     var intValue = (int) value;
 

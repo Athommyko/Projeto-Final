@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import model.Product;
+/**
+ * Repository of product table.
+ */
 
 public class ProductRepository implements IRepository<Long, Product> {
+    //fake database.
     private static final List<Product> FAKE_DATABASE = new ArrayList();
+    //fake last_insert_id()
     private static Long currentId = 1l;
 
     @Override
@@ -29,11 +34,23 @@ public class ProductRepository implements IRepository<Long, Product> {
     }
    }
 
+
     @Override
-    public Optional<Product> findbyId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findbyId'");
+    public List<Product> findAll() {    
+        var clone = new ArrayList<Product>();
+        FAKE_DATABASE.stream().forEach(clone::add);
+    return clone;    
+
     }
 
+    @Override
+    public Optional<Product> findById(Long id) {
+        var product = FAKE_DATABASE.stream().filter(p -> p.getId() == id).findFirst();
+        return product;
+    }
+
+
+    
+       
   
 }
