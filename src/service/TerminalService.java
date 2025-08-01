@@ -14,8 +14,19 @@ public class TerminalService implements ITerminal {
     }
 
     @Override
-    public void showMessage(String message){
+    public void showMessage(String message, int dalay){
         System.out.println(message);
+        try {
+            if(dalay > 0){
+                Thread.sleep(dalay);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void showMessage(String message){
+        showMessage(message, 0);
     }
 
     @Override

@@ -11,7 +11,7 @@ import model.Product;
 
 public class ProductRepository implements IRepository<Long, Product> {
     //fake database.
-    private static final List<Product> FAKE_DATABASE = new ArrayList();
+    private static final List<Product> FAKE_DATABASE = new ArrayList<>();
     //fake last_insert_id()
     private static Long currentId = 1l;
 

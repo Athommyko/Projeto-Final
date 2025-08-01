@@ -9,6 +9,13 @@ public interface ITerminal {
      * @param message
      */
     void showMessage(String message);
+    /**
+     * To write message for the user and await a dalay after message.
+     * to continue app execution.
+     * @param message
+     * @param dalay
+     */
+    void showMessage(String message, int dalay);
 
     /**
      * To read input message by user.

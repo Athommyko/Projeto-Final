@@ -1,5 +1,7 @@
 package service;
 
+import java.util.Optional;
+
 import model.Product;
 
 /**
@@ -19,7 +21,8 @@ public class CollectProductDataFromTerminal {
      */
 
 
-public Product collect(){
+public Optional<Product> collect(){
+    try{
     terminalService.showMessage("INFORME O NOME DO PRODUTO");
     var name = terminalService.readLine();
     terminalService.showMessage("INFORME O PREÇO DO PRODUTO");
@@ -35,7 +38,16 @@ public Product collect(){
     product.setValue(intValue);
     product.setStock(stock);
 
-    return product;
+    return Optional.of(product);
+} catch (NumberFormatException ex){
+    terminalService.showMessage("REGISTRO DO PRODUTO CANCELADO DEVIDO À ERRO: %s".formatted(ex.getMessage()));
+    return Optional.empty();
+}
 }
 
+public Optional<Product> collectByProduct(Product product){
+    return Optional.empty();
 }
+}
+
+
