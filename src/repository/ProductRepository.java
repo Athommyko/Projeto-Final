@@ -20,7 +20,20 @@ public class ProductRepository implements IRepository<Long, Product> {
        var isUpdate = entity.getId() != null && entity.getId() > 0;
 
     if(isUpdate){
-      throw new RuntimeException("Implement it");
+        for(int i = 0; i <FAKE_DATABASE.size(); i++){
+            if(FAKE_DATABASE.get(i).getId().longValue() == entity.getId().longValue()){
+                FAKE_DATABASE.set(i, entity);
+            }
+        }
+        
+        var newEntity = new Product();
+        newEntity.setName(entity.getName());
+        newEntity.setStock(entity.getStock());
+        newEntity.setValue(entity.getValue());
+        newEntity.setId(entity.getId());
+
+        return newEntity;
+        
     }else{
         var newEntity = new Product();
         newEntity.setName(entity.getName());

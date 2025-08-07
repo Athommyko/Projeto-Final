@@ -44,9 +44,36 @@ public Optional<Product> collect(){
     return Optional.empty();
 }
 }
-
+/**
+ * To initialize data collector using product as base.
+ * 
+ * @param product
+ * @return
+ */
 public Optional<Product> collectByProduct(Product product){
-    return Optional.empty();
+    try{
+        terminalService.showMessage("INFORME O NOME DO PRODUTO: (%s)".formatted(product.getName()));
+        var name = terminalService.readLine();
+        var doubleValue = product.getValue() / 100.00;
+        terminalService.showMessage("INFORME O PREÇO DO PRODUTO: (%s)".formatted(doubleValue));
+        var value = terminalService.readLineAsDouble();
+        terminalService.showMessage("INFORME O ESTOQUE DO PRODUTO: (%s)".formatted(product.getStock()));
+        var stock = terminalService.readLineAsInt();
+        //multiply to prevent float number.
+        value *= 100;
+        var intValue = (int) value;
+    
+        var newProduct = new Product();
+        newProduct.setName(name);
+        newProduct.setValue(intValue);
+        newProduct.setStock(stock);
+        newProduct.setId(product.getId());
+    
+        return Optional.of(newProduct);
+    } catch (NumberFormatException ex){
+        terminalService.showMessage("REGISTRO DO PRODUTO CANCELADO DEVIDO À ERRO: %s".formatted(ex.getMessage()));
+        return Optional.empty();
+    }
 }
 }
 
